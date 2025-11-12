@@ -1,0 +1,56 @@
+@if (showModal$ | async) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-button" (click)="closeModal()" aria-label="Close modal">
+        ✕
+      </button>
+
+      @if (loading$ | async) {
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+          <p>Loading badge...</p>
+        </div>
+      } @else {
+          @if (badge$ | async; as badge) {
+            <div class="badge-content">
+              <h2 class="badge-title">Season Badge</h2>
+
+              @if (badge.strBadge) {
+                <img
+                  [src]="badge.strBadge"
+                  [alt]="'Badge for ' + badge.strSeason"
+                  class="badge-image"
+                />
+                <p class="season-info"><strong>Season:</strong> {{ badge.strSeason }}</p>
+
+                @if (badge.strDescriptionEN) {
+                  <p class="badge-description">{{ badge.strDescriptionEN }}</p>
+                }
+              } @else {
+                <div class="no-badge">
+                  <p>No badge available for this league</p>
+                </div>
+              }
+            </div>
+          } @else {
+            <div class="error-page-container">
+              <div class="page-head">
+                <div class="error-title-container">
+                </div>
+                <div class="img-container">
+                  <img src="//s.sporty.net/global/main/modules/main/desktop/page40x/img/PC_400.5e714c1b8c.jpg">
+                </div>
+              </div>
+              <div class="page-body">
+                <div class="error-message-title">OOPS...</div>
+                <div class="error-message">
+                  <span class="error-message-part-1">The page and ball you're looking for doesn't exist. Please go back to the home page and enjoy your matches, we are waiting for you there! </span>
+                  <a id="back-btn" href="javascript:void(0)" (click)="closeModal()"> Go Back</a><br>
+                </div>
+              </div>
+            </div>
+          }
+      }
+    </div>
+  </div>
+}

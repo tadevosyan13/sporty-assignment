@@ -1,0 +1,17 @@
+<div class="search-bar">
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="onSearchChange($event)"
+    placeholder="Search leagues..."
+    class="search-input"
+    aria-label="Search leagues"
+  />
+  <button
+    class="clear-button"
+    (click)="clearSearch()"
+    aria-label="Clear search"
+  >
+    ✕
+  </button>
+</div>

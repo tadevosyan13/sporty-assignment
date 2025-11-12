@@ -1,0 +1,21 @@
+<div
+  class="league-card"
+  role="button"
+  tabindex="0"
+  (click)="onCardClick()"
+  (keydown.enter)="onCardClick()"
+  (keydown.space)="onCardClick()"
+>
+  <div class="league-header">
+    <h3 class="league-name">{{ league.strLeague }}</h3>
+    <span class="sport-badge">{{ league.strSport }}</span>
+  </div>
+
+  @if (league.strLeagueAlternate) {
+    <p class="league-alternate">{{ league.strLeagueAlternate }}</p>
+  }
+
+  <div class="card-footer">
+    <span class="click-hint">Click to view badge</span>
+  </div>
+</div>

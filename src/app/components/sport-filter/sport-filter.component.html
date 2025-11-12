@@ -1,0 +1,15 @@
+<div class="sport-filter">
+  <label for="sport-select" class="filter-label">Filter by Sport:</label>
+  <select
+    id="sport-select"
+    [ngModel]="selectedSport$ | async"
+    (ngModelChange)="onSportChange($event)"
+    class="sport-select"
+  >
+    <option value="all">All Sports</option>
+
+    @for (sport of availableSports$ | async; track sport) {
+      <option [value]="sport">{{ sport }}</option>
+    }
+  </select>
+</div>
